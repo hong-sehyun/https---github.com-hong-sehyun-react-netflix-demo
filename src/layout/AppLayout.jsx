@@ -113,7 +113,7 @@ const AppLayout = () => {
                   textDecoration: "none",
                 }}
               >
-                NETFLIX
+                N
               </Typography>
               <IconButton
                 size="large"
