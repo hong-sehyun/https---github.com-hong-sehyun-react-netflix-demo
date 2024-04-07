@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
+import {
+  styled,
+  alpha,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -95,63 +100,71 @@ const AppLayout = () => {
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="#"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", sm: "block", md: "flex" },
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                N
-              </Typography>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-                sx={{
-                  display: { xs: "block", sm: "none", md: "none" },
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                ))}
-              </Box>
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
-            </Toolbar>
-          </Container>
-        </AppBar>
-        {renderMobileMenu}
-      </Box>
+      <ThemeProvider
+        theme={createTheme({
+          palette: {
+            mode: "dark",
+          },
+        })}
+      >
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+                <Typography
+                  variant="h3"
+                  noWrap
+                  component="a"
+                  href="#"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "none", sm: "block", md: "flex" },
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "red",
+                    textDecoration: "none",
+                  }}
+                >
+                  N
+                </Typography>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                  sx={{
+                    display: { xs: "block", sm: "none", md: "none" },
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
+                  {pages.map((page) => (
+                    <Button
+                      key={page}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+                </Box>
+                <Search>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                </Search>
+              </Toolbar>
+            </Container>
+          </AppBar>
+          {renderMobileMenu}
+        </Box>
+      </ThemeProvider>
       <Outlet />
     </div>
   );
