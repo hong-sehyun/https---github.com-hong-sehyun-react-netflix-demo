@@ -2,6 +2,7 @@ import React from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
 import "./Banner.style.css";
 
 const Banner = () => {
@@ -19,7 +20,11 @@ const Banner = () => {
   }
 
   if (!data || !data.results) {
-    return <div>Loading...</div>;
+    return (
+      <Box>
+        <CircularProgress />;
+      </Box>
+    );
   }
 
   console.log("Poster path:", data.results[0].poster_path);
