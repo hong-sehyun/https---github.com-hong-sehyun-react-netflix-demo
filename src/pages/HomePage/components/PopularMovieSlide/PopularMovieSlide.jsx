@@ -2,6 +2,7 @@ import React from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from "../MovieCard/MovieCard";
@@ -33,6 +34,14 @@ const PopularMovieSlide = () => {
     <Alert variant="filled" severity="error">
       {error.message}
     </Alert>;
+  }
+
+  if (!data || !data.results) {
+    return (
+      <Box>
+        <CircularProgress />;
+      </Box>
+    );
   }
 
   return (
