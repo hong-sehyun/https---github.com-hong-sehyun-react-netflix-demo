@@ -1,11 +1,12 @@
 import React from "react";
 import "./MovieSlider.style.css";
 import MovieCard from "../MovieCard/MovieCard";
+import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 
 const MovieSlider = ({ title, movies, responsive }) => {
   return (
-    <div>
+    <div className="slider">
       <h3>{title}</h3>
       <Carousel
         infinite={true}

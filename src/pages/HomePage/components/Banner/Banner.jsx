@@ -34,7 +34,7 @@ const Banner = () => {
       style={{
         backgroundImage:
           "url(" +
-          `https://media.themoviedb.org/t/p/w1066_and_h600_bestv2${data?.results[0].poster_path}` +
+          `https://media.themoviedb.org/t/p/w1066_and_h600_bestv2${data?.results[0].backdrop_path}` +
           ")",
       }}
       className="banner"

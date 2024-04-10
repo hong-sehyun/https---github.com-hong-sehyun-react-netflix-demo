@@ -3,10 +3,21 @@
   height: 440px;
 }
 
+.slider {
+  margin-top: 20px;
+}
+
+.react-multi-carousel-track li {
+  width: 240px !important;
+}
+
 @media (max-width: 480px) {
   .carousel-container {
     height: 330px;
     display: flex;
     justify-content: space-between;
+  }
+  .slider {
+    margin-top: 0px;
   }
 }

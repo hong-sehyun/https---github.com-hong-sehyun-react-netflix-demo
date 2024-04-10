@@ -5,11 +5,12 @@
   transition: 0.5s;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .overlay {
-  width: 100%;
-  height: 100%;
+  width: 210px;
+  height: 330px;
   background: rgba(43, 41, 41, 0.9);
   opacity: 0;
   transition: all 1s;
