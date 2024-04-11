@@ -16,12 +16,36 @@
 
 .banner-text {
   color: white;
-  width: 36%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   padding: 2rem;
+}
+
+@media (max-width: 480px) {
+  .banner-text {
+    color: white;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .banner-text {
+    color: white;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+  }
 }
 
 .banner-text span {
