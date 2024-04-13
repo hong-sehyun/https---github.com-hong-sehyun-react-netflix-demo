@@ -3,9 +3,11 @@ import Chip from "@mui/material/Chip";
 import "./MovieCard.style.css";
 import StarIcon from "@mui/icons-material/Star";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const { data: genreData } = useMovieGenreQuery();
+  const navigate = useNavigate();
 
   const showGenre = (genreIdList) => {
     if (!genreData) return [];
@@ -17,6 +19,10 @@ const MovieCard = ({ movie }) => {
     return genreNameList;
   };
 
+  const goToMovieDetail = () => {
+    navigate(`/movie/${movie.id}`);
+  };
+
   return (
     <div
       style={{
@@ -26,6 +32,7 @@ const MovieCard = ({ movie }) => {
           ")",
       }}
       className="movie-card"
+      onClick={goToMovieDetail}
     >
       <div className="overlay">
         <h3>{movie.title}</h3>
