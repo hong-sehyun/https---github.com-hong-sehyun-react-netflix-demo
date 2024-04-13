@@ -6,14 +6,15 @@ import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import MovieCard from "../../common/MovieCard/MovieCard";
-// import ReactPaginate from "react-paginate";
 import { Pagination } from "@mui/material";
 import Button from "@mui/material/Button";
+import GenreFilter from "./components/Filters/GenreFilter/GenreFilter";
 
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
   const [page, setPage] = useState(1);
   const [sortByVote, setSortByVote] = useState(false);
+  const [genreFilter, setGenreFilter] = useState([]);
 
   const keyword = query.get("q");
 
@@ -25,6 +26,10 @@ const MoviePage = () => {
   const handlePageClick = (event, value) => {
     setPage(value);
     // console.log("page", page);
+  };
+
+  const handleGenre = (id) => {
+    setGenreFilter([...genreFilter, id]);
   };
 
   if (isLoading) {
@@ -52,27 +57,26 @@ const MoviePage = () => {
           onClick={() => setSortByVote(!sortByVote)}
           sx={{ ml: 2, cursor: "pointer" }}
         >
-          평점순 정렬
+          인기순 정렬
         </Button>
+        <GenreFilter onGenreChange={handleGenre} />
       </div>
       <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 12, md: 12 }}>
-        {/* {data?.results.map((movie, index) => (
-          <Grid item xs={2} sm={6} md={3} key={index}>
-            <MovieCard movie={movie} />
-          </Grid>
-        ))} */}
         {data?.results
           .slice()
           .sort((a, b) => (sortByVote ? b.vote_average - a.vote_average : 0))
+          .filter((item) =>
+            genreFilter.every((i) => item.genre_ids.includes(i))
+          )
           .map((movie, index) => (
             <Grid item xs={2} sm={6} md={3} key={index}>
               <MovieCard movie={movie} />
             </Grid>
           ))}
+      </Grid>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
         <Pagination
           count={data?.total_pages}
-          defaultPage={1}
-          color="primary"
           page={page}
           onChange={handlePageClick}
           sx={{
@@ -81,11 +85,8 @@ const MoviePage = () => {
               borderColor: "gray",
             },
           }}
-          // count={data?.total_pages}
-          // onChange={handlePageClick}
-          // page={page}
         />
-      </Grid>
+      </Box>
     </Box>
   );
 };

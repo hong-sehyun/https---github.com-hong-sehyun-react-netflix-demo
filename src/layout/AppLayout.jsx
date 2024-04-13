@@ -18,7 +18,6 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
-// Define your styled components here
 const Search = styled("div")(({ theme }) => ({
   display: "flex",
   position: "relative",
