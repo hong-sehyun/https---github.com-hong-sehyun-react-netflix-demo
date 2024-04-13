@@ -5,13 +5,12 @@ import Alert from "@mui/material/Alert";
 import { Grid, Paper, Typography, Button, Box } from "@mui/material";
 import TrailerModal from "../HomePage/components/TrailerModal/TrailerModal";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetail";
+import ReviewModal from "../HomePage/components/ReviewModal/ReviewModal";
+import RecommendationSlide from "./components/RecommendationSlide/RecommendationSlide";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useMovieDetailQuery(id);
-
-  // console.log("d2", data.title);
-  // console.log("d2", data.id);
 
   if (isLoading) {
     return <CircularProgress />;
@@ -59,7 +58,7 @@ const MovieDetailPage = () => {
                 {data?.genres.map((genre) => genre.name).join(", ")}
               </Typography>
             )}
-            <TrailerModal movieId={id} />
+            <TrailerModal id={id} />
             <Typography variant="body1" sx={{ flexGrow: 1 }} gutterBottom>
               {data?.overview}
             </Typography>
@@ -72,10 +71,11 @@ const MovieDetailPage = () => {
             <Typography variant="body2" gutterBottom>
               개봉일: {data?.release_date}
             </Typography>
-            <Button variant="contained">리뷰</Button>
+            <ReviewModal id={data?.id} />
           </Box>
         </Grid>
       </Grid>
+      <RecommendationSlide id={data?.id} />
     </div>
   );
 };
